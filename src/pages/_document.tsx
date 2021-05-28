@@ -6,6 +6,8 @@ import Document, {
   NextScript,
 } from 'next/document'
 
+import { body } from '../global.css'
+
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -19,7 +21,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" href="/assets/favicon.ico" />
         </Head>
-        <body>
+        <body className={body}>
           <Main />
           <NextScript />
         </body>

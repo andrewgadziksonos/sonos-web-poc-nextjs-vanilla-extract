@@ -1,12 +1,7 @@
-import {
-  GlobalStyles,
-  LazyProvider,
-  theme,
-  ThemeProvider,
-} from '@sonos-inc/web-ui-core'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import React from 'react'
+
+import { Block } from '../components/Block'
 
 export default function App({
   Component,
@@ -16,13 +11,8 @@ export default function App({
   pageProps: any
 }) {
   return (
-    <div id="preact_root">
-      <LazyProvider lazy={dynamic}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles useDarkMode={false} />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </LazyProvider>
-    </div>
+    <main id="preact_root">
+      <Component {...pageProps} />
+    </main>
   )
 }
