@@ -1,0 +1,5 @@
+{
+  "extends": "@sonos-inc/tsconfig/tsconfig.node.json",
+  "include": ["cdk"],
+  "exclude": ["node_modules", "cdk.out"]
+}

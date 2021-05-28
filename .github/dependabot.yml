@@ -1,0 +1,25 @@
+version: 2
+
+registries:
+  npm-ghp-octocat:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{secrets.SERVICE_ACCT_TOKEN}}
+
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "main"
+
+  # Maintain dependencies for npm
+  - package-ecosystem: npm
+    directory: "/"
+    registries:
+      - npm-ghp-octocat
+    schedule:
+      interval: daily
+    target-branch: "main"
+    versioning-strategy: increase

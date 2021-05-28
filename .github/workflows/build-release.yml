@@ -1,0 +1,51 @@
+name: Build - Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_NAME: template-nextjs
+      DOMAIN_NAME: blog-sandbox.sonos.com
+      HUSKY: 0
+      NODE_VERSION: "14"
+      NPM_TOKEN: ${{ secrets.SERVICE_ACCT_TOKEN }}
+      GITHUB_TOKEN: ${{secrets.SERVICE_ACCT_TOKEN}}
+      GH_TOKEN: ${{secrets.SERVICE_ACCT_TOKEN}}
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{secrets.SERVICE_ACCT_TOKEN}}
+
+      - name: Setup Node.js for Build
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.NODE_VERSION }}-
+
+      - name: Install package dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Release
+        run: yarn release

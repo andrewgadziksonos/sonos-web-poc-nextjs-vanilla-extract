@@ -1,0 +1,9 @@
+node_modules
+build
+.next
+.next-tf
+.terraform
+*.tfstate*
+cdk.out
+*.log
+reports
