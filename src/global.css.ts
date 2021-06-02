@@ -1,8 +1,11 @@
 import { atoms } from './sprinkles.css'
 
+export const heightFull = atoms({
+  height: 'full',
+})
+
 export const body = atoms({
-  padding: 'none',
-  margin: 'none',
+  fontFamily: 'body',
 
   background: {
     lightMode: 'white',
