@@ -1,18 +1,10 @@
-import { atoms } from './sprinkles.css'
+import { globalStyle } from '@vanilla-extract/css'
 
-export const heightFull = atoms({
-  height: 'full',
+globalStyle('html, body, #__next, #preact_root', {
+  height: '100%',
 })
 
-export const body = atoms({
-  fontFamily: 'body',
-
-  background: {
-    lightMode: 'white',
-    darkMode: 'black',
-  },
-  color: {
-    lightMode: 'black',
-    darkMode: 'white',
-  },
+globalStyle('*', {
+  padding: '0',
+  margin: '0',
 })

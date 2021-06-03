@@ -6,7 +6,7 @@ import Document, {
   NextScript,
 } from 'next/document'
 
-import { body, heightFull } from '../global.css'
+import { body } from '../body.css'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -17,11 +17,11 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className={heightFull}>
+      <Html>
         <Head>
           <link rel="stylesheet" href="https://use.typekit.net/prs6khl.css" />
         </Head>
-        <body className={`${body} ${heightFull}`}>
+        <body className={body}>
           <Main />
           <NextScript />
         </body>
